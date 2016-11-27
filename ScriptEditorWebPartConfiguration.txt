@@ -1,0 +1,5 @@
+﻿<link rel="stylesheet" href="https://spoppe-a.akamaihd.net/files/fabric/office-ui-fabric-core/4.1.0/css/fabric.min.css">
+<link rel="stylesheet" href="/sites/p0000074/resources/content/hbo365.projectroom.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script src="/sites/p0000074/resources/scripts/hbo365.dashboard.js"></script>​​​​​
+<div id="_summary"></div>
