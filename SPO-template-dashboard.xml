@@ -2,7 +2,7 @@
 <pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2015/12/ProvisioningSchema">
   <pnp:Preferences Generator="OfficeDevPnP.Core, Version=2.1.1602.1, Culture=neutral, PublicKeyToken=3751622786b357c2">
     <pnp:Parameters>
-      <pnp:Parameter Key="WebSiteAbsoluteUrl" Required="true">https://giuleon.sharepoint.com/sites/demo</pnp:Parameter>
+      <pnp:Parameter Key="WebSiteAbsoluteUrl" Required="true">https://<your tenant>.sharepoint.com/sites/<site name></pnp:Parameter>
     </pnp:Parameters>
   </pnp:Preferences>
   <pnp:Templates ID="CONTAINER-PNP-DASHBOARD">

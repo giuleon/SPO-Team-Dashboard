@@ -10,7 +10,7 @@
 [CmdletBinding()]
 param
 (
-<#
+
     [Parameter(Mandatory = $true, HelpMessage="Enter the URL of the office 365 admin site collection, e.g. 'https://intranet-admin.mydomain.com'")]
     [String]
     $AdminSiteUrl,
@@ -19,10 +19,10 @@ param
     [String]
     $TargetSiteUrl,
 
-    [Parameter(Mandatory = $true, HelpMessage="Enter the PnP template path, e.g. 'Governance\SPO-Governance.xml'")]
+    [Parameter(Mandatory = $true, HelpMessage="Enter the PnP template path, e.g. 'SPO-template-dashboard.xml'")]
     [String]
     $TemplatePath,
-#>
+
     [Parameter(Mandatory = $false, HelpMessage="Enter the URL of the infrastructural site collection, if any. It is an optional parameter. Values are like: 'https://intranet.mydomain.com/sites/infrastructureSite'")]
     [String]
     $InfrastructureSiteUrl,
@@ -55,9 +55,9 @@ Write-Host
 try
 {
 	Write-Host -ForegroundColor Yellow "Connecting to admin site URL: $AdminSiteUrl"
-    Connect-SPOnline –Url https://giuleon-admin.sharepoint.com –Credentials SPOnline
+    Connect-SPOnline –Url $AdminSiteUrl –Credentials $Credentials
     #Remove-SPOTenantSite -Url "https://giuleon.sharepoint.com/sites/demo" -SkipRecycleBin
-    if ([bool] (Get-PnPTenantSite https://giuleon.sharepoint.com/sites/demo -ErrorAction SilentlyContinue) -eq $false) {
+    if ([bool] (Get-PnPTenantSite $TargetSiteUrl -ErrorAction SilentlyContinue) -eq $false) {
     	Write-Host -ForegroundColor Yellow "The site collection has not been found I'll create it."
         $SiteTitle = Read-Host -Prompt 'Insert the site collection title'
         $SiteOwner = Read-Host -Prompt 'Insert the site collection administrator'
@@ -170,11 +170,11 @@ try
         16->(UTC+13:00) Samoa
         #>
         $SiteTimeZone = Read-Host -Prompt 'Insert the time zone (integer value ex. 4)'
-    	New-PnPTenantSite -Title $SiteTitle -Url https://giuleon.sharepoint.com/sites/demo -Owner $SiteOwner -Lcid 1033 -Template “STS#0” -TimeZone $SiteTimeZone -StorageQuota 1000 -RemoveDeletedSite -Wait
+    	New-PnPTenantSite -Title $SiteTitle -Url $TargetSiteUrl -Owner $SiteOwner -Lcid 1033 -Template “STS#0” -TimeZone $SiteTimeZone -StorageQuota 1000 -RemoveDeletedSite -Wait
     } 
-	Connect-SPOnline https://giuleon.sharepoint.com/sites/demo -Credentials SPOnline #$Credentials
+	Connect-SPOnline $TargetSiteUrl -Credentials $Credentials
 	Write-Host -ForegroundColor Yellow "Provisoning a template on a target site"
-    Apply-SPOProvisioningTemplate -Path "SPO-template-dashboard.xml" #$TemplatePath
+    Apply-SPOProvisioningTemplate -Path $TemplatePath
 	Write-Host -ForegroundColor Yellow "Provisoning a template finished"
 }
 catch
