@@ -35,7 +35,7 @@ function retrieveLateTasks() {
     $.when(RestAPI.GetListItems('Tasks', _spPageContextInfo.siteAbsoluteUrl, "?$orderby=DueDate asc&$filter=DueDate le '" + today + "' and (Status eq 'In Progress' or Status eq 'Not Started' or Status eq 'Waiting on someone else')"))
     .done(function (data) {
         var lateTasks = data.d.results.length;
-        addTile("_late", lateTasks + " Late tasks", "lists/Tasks", "Timer");
+        addTile("_late", lateTasks + " Late tasks", "/Tasks", "Timer");
     })
     .fail(function (data) {
         console.log(data.responseText);
@@ -46,7 +46,7 @@ function retrieveUpcomingTasks() {
     $.when(RestAPI.GetListItems('Tasks', _spPageContextInfo.siteAbsoluteUrl, "?$orderby=StartDate asc&$filter=StartDate ge '" + today + "' and Status eq 'Not Started'"))
     .done(function (data) {
         var upcomingTasks = data.d.results.length;
-        addTile("_upcoming", upcomingTasks + " Upcoming tasks", "lists/Tasks", "RecurringTask");
+        addTile("_upcoming", upcomingTasks + " Upcoming tasks", "/Tasks", "RecurringTask");
     })
     .fail(function (data) {
         console.log(data.responseText);
@@ -57,7 +57,7 @@ function retrieveUpcomingEvents() {
     $.when(RestAPI.GetFlexible(_spPageContextInfo.siteAbsoluteUrl, '/_vti_bin/ListData.svc/Calendar', "?$orderby=StartTime asc&$filter=StartTime ge datetime'" + today + "'"))
     .done(function (data) {
         var upcomingEvents = data.d.results.length;
-        addTile("_upcomingEvents", upcomingEvents + " Upcoming events", "lists/Calendar", "Calendar");
+        addTile("_upcomingEvents", upcomingEvents + " Upcoming events", "/Calendar", "Calendar");
     })
     .fail(function (data) {
         console.log(data.responseText);
