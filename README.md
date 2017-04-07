@@ -6,4 +6,4 @@ Dashboard SharePoint Team Site
 
 ## Read my article
 
-For more information, see <http://www.delucagiuliano.com/Blog/Post/21/Nice-dashboard-for-your-SharePoint-site/>.
+For more information, see <http://www.delucagiuliano.com/nice-dashboard-for-your-sharepoint-site>.
